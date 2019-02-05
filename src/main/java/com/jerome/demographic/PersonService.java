@@ -15,7 +15,7 @@ public class PersonService {
     }
 
     public List<PersonDto> findAllByOrderByNameAsc() {
-        return personRepository.findAllByOrderByNameAsc()
+        return personRepository.findAll()
                 .stream()
                 .map(person -> new PersonDto(
                         person.getId(),

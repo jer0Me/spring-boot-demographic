@@ -26,8 +26,8 @@ public class PersonRepositoryTest {
     @Test
     @FlywayTest(invokeBaselineDB = true)
     @Transactional
-    public void shouldRetrieveAllPersonsOrderByNameAsc() {
-        List<Person> result = personRepository.findAllByOrderByNameAsc();
+    public void shouldRetrieveAllPersons() {
+        List<Person> result = personRepository.findAll();
         assertEquals(result.size(), 5);
         assertEquals(result.get(0).getName(), "Althea Sweeney");
     }

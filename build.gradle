@@ -29,5 +29,8 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:2.23.4'
 	testImplementation 'org.flywaydb.flyway-test-extensions:flyway-spring-test:5.2.1'
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+
 }

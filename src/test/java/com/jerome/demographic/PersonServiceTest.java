@@ -35,16 +35,17 @@ public class PersonServiceTest {
 
     @Test
     public void shouldReturnAllPersonAvailableMappedToPersonDto() {
-        Person person = new Person();
-        person.setId(25L);
-        person.setName("Robinette Deware");
-        person.setPpsn("3131333L");
-        person.setDateOfBirth(LocalDate.of(1987, 9, 1));
-        person.setMobilePhone("016946584");
-        person.setCreated(LocalDateTime.now());
+        Person person = Person.builder()
+                .id(25L)
+                .name("Robinette Deware")
+                .ppsn("3131333L")
+                .dateOfBirth(LocalDate.of(1987, 9, 1))
+                .mobilePhone("016946584")
+                .created(LocalDateTime.now())
+                .build();
         when(mockPersonRepository.findAll()).thenReturn(Collections.singletonList(person));
 
-        List<PersonDto> persons = personService.findAllByOrderByNameAsc();
+        List<PersonDto> persons = personService.findAll();
 
         assertEquals(persons.size(), 1);
         assertEquals(person.getId(), persons.get(0).getId());

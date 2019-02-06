@@ -36,11 +36,12 @@ public class PersonRepositoryTest {
     @FlywayTest(invokeBaselineDB = true)
     @Transactional
     public void shouldBeAbleToAddNewPerson() {
-        Person person = new Person();
-        person.setName("Robinette Deware");
-        person.setPpsn("3131333L");
-        person.setDateOfBirth(LocalDate.of(1987, 9, 1));
-        person.setMobilePhone("016946584");
+        Person person = Person.builder()
+                .name("Robinette Deware")
+                .ppsn("3131333L")
+                .dateOfBirth(LocalDate.of(1987, 9, 1))
+                .mobilePhone("016946584")
+                .build();
         personRepository.save(person);
         Optional<Person> personSaved = personRepository.findById(person.getId());
 

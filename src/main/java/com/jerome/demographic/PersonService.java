@@ -16,15 +16,17 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public List<PersonDto> findAllByOrderByNameAsc() {
+    public List<PersonDto> findAll() {
         return personRepository.findAll()
                 .stream()
-                .map(person -> new PersonDto(
-                        person.getId(),
-                        person.getName(),
-                        person.getPpsn(),
-                        person.getDateOfBirth(), person.getMobilePhone()
-                )).collect(Collectors.toList());
+                .map(person -> PersonDto.builder()
+                        .id(person.getId())
+                        .name(person.getName())
+                        .ppsn(person.getPpsn())
+                        .dateOfBirth(person.getDateOfBirth())
+                        .mobilePhone(person.getMobilePhone())
+                        .build()
+                ).collect(Collectors.toList());
     }
 
     public void addNewPerson(PersonRequest personRequest) {
@@ -34,11 +36,11 @@ public class PersonService {
     }
 
     private Person mapPersonRequestToPerson(PersonRequest personRequest) {
-        Person person = new Person();
-        person.setName(personRequest.getName());
-        person.setPpsn(personRequest.getPpsn());
-        person.setDateOfBirth(personRequest.getDateOfBirth());
-        person.setMobilePhone(personRequest.getMobilePhone());
-        return person;
+        return Person.builder()
+                .name(personRequest.getName())
+                .ppsn(personRequest.getPpsn())
+                .dateOfBirth(personRequest.getDateOfBirth())
+                .mobilePhone(personRequest.getMobilePhone())
+                .build();
     }
 }

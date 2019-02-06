@@ -1,6 +1,8 @@
 package com.jerome.demographic;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +13,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Immutable
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 public class Person {
 
     @Id
@@ -34,51 +41,4 @@ public class Person {
     @Column(nullable = false)
     private LocalDateTime created;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPpsn() {
-        return ppsn;
-    }
-
-    public void setPpsn(String ppsn) {
-        this.ppsn = ppsn;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
-
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
 }

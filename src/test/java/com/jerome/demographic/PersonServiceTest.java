@@ -1,5 +1,6 @@
 package com.jerome.demographic;
 
+import com.jerome.demographic.person.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,5 +1,7 @@
 package com.jerome.demographic;
 
+import com.jerome.demographic.person.Person;
+import com.jerome.demographic.person.PersonRepository;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;

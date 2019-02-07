@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{dashboard}">
+
+    <th:block layout:fragment="page_title">
+        Add Person
+    </th:block>
+        <form id="add_person_form"
+              layout:fragment="content"
+              class="col-sm-7">
+            <div class="form-group row">
+                <label for="name"
+                       class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input id="name"
+                           type="text"
+                           class="form-control"
+                           onblur="personFormManager.validateName()">
+                    <div id="name_feedback"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ppsn"
+                       class="col-sm-3 col-form-label">PPS number</label>
+                <div class="col-sm-9">
+                    <input id="ppsn"
+                           type="text"
+                           class="form-control"
+                           onblur="personFormManager.validatePpsn()">
+                    <div id="ppsn_feedback"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="date_of_birth"
+                       class="col-sm-3 col-form-label">Date of Birth</label>
+                <div class="col-sm-9">
+                    <input id="date_of_birth"
+                           type="text"
+                           class="form-control"
+                           onblur="personFormManager.validateDateOfBirth()"
+                           placeholder="dd/mm/yyyy">
+                    <div id="date_of_birth_feedback"></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mobile_phone"
+                       class="col-sm-3 col-form-label">Mobile Phone</label>
+                <div class="col-sm-9">
+                    <input id="mobile_phone"
+                           type="text"
+                           class="form-control"
+                           onblur="personFormManager.validateMobilePhone()"
+                           placeholder="08">
+                    <div id="mobile_phone_feedback"></div>
+                </div>
+            </div>
+            <button type="button"
+                    class="btn btn-primary float-right"
+                    onclick="personFormManager.addPerson()">Submit</button>
+        </form>
+    </div>
+</html>

@@ -26,11 +26,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-core:2.23.4'
 	testImplementation 'org.flywaydb.flyway-test-extensions:flyway-spring-test:5.2.1'
 	compileOnly 'org.projectlombok:lombok:1.18.4'
-
+	compile 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.3.0'
+	compile 'org.webjars:jquery:3.3.1-1'
+	compile 'org.webjars:bootstrap:4.2.1'
+	compile 'org.webjars:momentjs:2.22.2'
 }

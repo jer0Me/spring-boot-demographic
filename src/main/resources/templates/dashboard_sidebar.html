@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <nav th:fragment="fragment" class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/persons/list' ? 'active' :''}"
+                       th:href="@{/persons/list}">
+                        List Person
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/persons/add_person' ? 'active' :''}"
+                       th:href="@{/persons/add_person}">
+                        Add person
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</html>

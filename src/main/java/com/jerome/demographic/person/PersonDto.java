@@ -1,4 +1,4 @@
-package com.jerome.demographic;
+package com.jerome.demographic.person;
 
 import lombok.Builder;
 import lombok.Getter;

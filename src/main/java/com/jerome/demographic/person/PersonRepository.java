@@ -1,4 +1,4 @@
-package com.jerome.demographic;
+package com.jerome.demographic.person;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

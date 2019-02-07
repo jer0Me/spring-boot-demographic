@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    </head>
+    <body class="text-center">
+        <main>
+            <h1 class="h1 font-weight-normal">
+                Welcome
+            </h1>
+            <p class="lead">
+                to a web application to capture and store demographic details for individuals.
+            </p>
+            <a role="button"
+               th:href="@{/persons/list}"
+               class="btn btn-primary">List persons</a>
+            <a role="button"
+               th:href="@{/persons/add_person}"
+               class="btn btn-primary">Add new person</a>
+        </main>
+    </body>
+</html>

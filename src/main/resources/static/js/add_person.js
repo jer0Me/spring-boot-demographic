@@ -97,7 +97,7 @@ const personFormManager = (() => {
             return false;
         }
 
-        if (!mobilePhoneValue.length < 9) {
+        if (mobilePhoneValue.length !== 9 || isNaN(mobilePhoneValue)) {
             markInputAsInvalid(mobilePhoneId, 'Mobile phone not valid');
             return false;
         } else {

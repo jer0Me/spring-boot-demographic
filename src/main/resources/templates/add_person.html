@@ -10,7 +10,9 @@
     </th:block>
         <form id="add_person_form"
               layout:fragment="content"
-              class="col-sm-7">
+              class="col-sm-7"
+              action="#"
+              th:action="@{/persons/add_person}" th:object="${personRequest}" method="post">
             <div class="form-group row">
                 <label for="name"
                        class="col-sm-3 col-form-label">Name</label>
@@ -18,7 +20,8 @@
                     <input id="name"
                            type="text"
                            class="form-control"
-                           onblur="personFormManager.validateName()">
+                           onblur="personFormManager.validateName()"
+                           th:field="*{name}">
                     <div id="name_feedback"></div>
                 </div>
             </div>
@@ -29,7 +32,8 @@
                     <input id="ppsn"
                            type="text"
                            class="form-control"
-                           onblur="personFormManager.validatePpsn()">
+                           onblur="personFormManager.validatePpsn()"
+                           th:field="*{ppsn}">
                     <div id="ppsn_feedback"></div>
                 </div>
             </div>
@@ -41,7 +45,8 @@
                            type="text"
                            class="form-control"
                            onblur="personFormManager.validateDateOfBirth()"
-                           placeholder="dd/mm/yyyy">
+                           placeholder="dd/mm/yyyy"
+                           th:field="*{dateOfBirth}">
                     <div id="date_of_birth_feedback"></div>
                 </div>
             </div>
@@ -53,7 +58,8 @@
                            type="text"
                            class="form-control"
                            onblur="personFormManager.validateMobilePhone()"
-                           placeholder="08">
+                           placeholder="08"
+                           th:field="*{mobilePhone}">
                     <div id="mobile_phone_feedback"></div>
                 </div>
             </div>

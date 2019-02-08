@@ -48,7 +48,7 @@ public class PersonServiceTest {
 
         List<PersonDto> persons = personService.findAll();
 
-        assertEquals(persons.size(), 1);
+        assertEquals(1, persons.size());
         assertEquals(person.getId(), persons.get(0).getId());
         assertEquals(person.getName(), persons.get(0).getName());
         assertEquals(person.getPpsn(), persons.get(0).getPpsn());

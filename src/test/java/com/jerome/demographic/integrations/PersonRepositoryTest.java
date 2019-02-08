@@ -30,8 +30,8 @@ public class PersonRepositoryTest {
     @Transactional
     public void shouldRetrieveAllPersons() {
         List<Person> result = personRepository.findAll();
-        assertEquals(result.size(), 5);
-        assertEquals(result.get(0).getName(), "Althea Sweeney");
+        assertEquals(5, result.size());
+        assertEquals("Althea Sweeney", result.get(0).getName());
     }
 
     @Test

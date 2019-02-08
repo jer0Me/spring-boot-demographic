@@ -32,9 +32,16 @@ public class PersonService {
 
     @Transactional
     public void addNewPerson(PersonRequest personRequest) {
+        checkIfThePersonWasAlreadyAdded(personRequest);
         personRepository.save(
                 mapPersonRequestToPerson(personRequest)
         );
+    }
+
+    private void checkIfThePersonWasAlreadyAdded(PersonRequest personRequest) {
+        if (personRepository.findByPpsn(personRequest.getPpsn()).isPresent()) {
+            throw new PersonWithPpsnAlreadyExistException(personRequest.getPpsn());
+        }
     }
 
     private Person mapPersonRequestToPerson(PersonRequest personRequest) {

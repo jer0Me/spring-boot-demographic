@@ -8,8 +8,14 @@
     <th:block layout:fragment="page_title">
         Add Person
     </th:block>
+
+    <div layout:fragment="content">
+        <div class="alert alert-danger"
+             role="alert"
+             th:if="${errorMessage != null}">
+            <th:block th:text="${errorMessage}"/>
+        </div>
         <form id="add_person_form"
-              layout:fragment="content"
               class="col-sm-7"
               action="#"
               th:action="@{/persons/add_person}" th:object="${personRequest}" method="post">

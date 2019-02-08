@@ -1,4 +1,4 @@
-package com.jerome.demographic;
+package com.jerome.demographic.integrations;
 
 import com.jerome.demographic.person.Person;
 import com.jerome.demographic.person.PersonRepository;

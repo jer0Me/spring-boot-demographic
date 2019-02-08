@@ -20,7 +20,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("list")
     public String findAll(Model model) {
         model.addAttribute("persons", personService.findAll());
         return "persons";

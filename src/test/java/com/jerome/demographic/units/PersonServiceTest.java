@@ -1,4 +1,4 @@
-package com.jerome.demographic;
+package com.jerome.demographic.units;
 
 import com.jerome.demographic.person.*;
 import org.junit.Before;

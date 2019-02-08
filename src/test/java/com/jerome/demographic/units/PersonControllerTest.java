@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,7 +39,7 @@ public class PersonControllerTest {
 
     @Test
     public void shouldReturnTheNameOfTheViewToShowTheListOfPersons() {
-        assertEquals("persons", personController.findAll(mockModel));
+        assertThat(personController.findAll(mockModel)).isEqualTo("persons");
     }
 
     @Test
@@ -47,12 +47,12 @@ public class PersonControllerTest {
         List<PersonDto> emptyPersonList = Collections.emptyList();
         when(mockPersonService.findAll()).thenReturn(emptyPersonList);
         personController.findAll(mockModel);
-        verify(mockModel).addAttribute("person", emptyPersonList);
+        verify(mockModel).addAttribute("persons", emptyPersonList);
     }
 
     @Test
     public void shouldReturnTheNameOfTheViewToAccessToPersonForm() {
-        assertEquals("add_person", personController.addPersonForm(mockModel));
+        assertThat(personController.addPersonForm(mockModel)).isEqualTo("add_person");
     }
 
     @Test
@@ -71,6 +71,6 @@ public class PersonControllerTest {
     @Test
     public void shouldRedirectToListPageWhenPersonWasAddedSuccessfully() {
         RedirectView redirectView = personController.addPerson(new PersonRequest());
-        assertEquals("list", redirectView.getUrl());
+        assertThat(redirectView.getUrl()).isEqualTo("list");
     }
 }

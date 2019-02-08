@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -48,12 +47,12 @@ public class PersonServiceTest {
 
         List<PersonDto> persons = personService.findAll();
 
-        assertEquals(1, persons.size());
-        assertEquals(person.getId(), persons.get(0).getId());
-        assertEquals(person.getName(), persons.get(0).getName());
-        assertEquals(person.getPpsn(), persons.get(0).getPpsn());
-        assertEquals(person.getDateOfBirth(), persons.get(0).getDateOfBirth());
-        assertEquals(person.getMobilePhone(), persons.get(0).getMobilePhone());
+        assertThat(persons).hasSize(1);
+        assertThat(person.getId()).isEqualTo(persons.get(0).getId());
+        assertThat(person.getName()).isEqualTo(persons.get(0).getName());
+        assertThat(person.getPpsn()).isEqualTo(persons.get(0).getPpsn());
+        assertThat(person.getDateOfBirth()).isEqualTo(persons.get(0).getDateOfBirth());
+        assertThat(person.getMobilePhone()).isEqualTo(persons.get(0).getMobilePhone());
     }
 
     @Test
@@ -68,12 +67,11 @@ public class PersonServiceTest {
 
         verify(mockPersonRepository).save(personArgumentCaptor.capture());
 
-        assertNull(personArgumentCaptor.getValue().getId());
-        assertNull(personArgumentCaptor.getValue().getCreated());
-        assertEquals(personRequest.getName(), personArgumentCaptor.getValue().getName());
-        assertEquals(personRequest.getPpsn(), personArgumentCaptor.getValue().getPpsn());
-        assertEquals(personRequest.getDateOfBirth(), personArgumentCaptor.getValue().getDateOfBirth());
-        assertEquals(personRequest.getMobilePhone(), personArgumentCaptor.getValue().getMobilePhone());
-
+        assertThat(personArgumentCaptor.getValue().getId()).isNull();
+        assertThat(personArgumentCaptor.getValue().getCreated()).isNull();
+        assertThat(personRequest.getName()).isEqualTo(personArgumentCaptor.getValue().getName());
+        assertThat(personRequest.getPpsn()).isEqualTo(personArgumentCaptor.getValue().getPpsn());
+        assertThat(personRequest.getDateOfBirth()).isEqualTo(personArgumentCaptor.getValue().getDateOfBirth());
+        assertThat(personRequest.getMobilePhone()).isEqualTo(personArgumentCaptor.getValue().getMobilePhone());
     }
 }

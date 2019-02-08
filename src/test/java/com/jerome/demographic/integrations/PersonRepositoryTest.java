@@ -14,9 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,8 +28,8 @@ public class PersonRepositoryTest {
     @Transactional
     public void shouldRetrieveAllPersons() {
         List<Person> result = personRepository.findAll();
-        assertEquals(5, result.size());
-        assertEquals("Althea Sweeney", result.get(0).getName());
+        assertThat(result).hasSize(5);
+        assertThat(result.get(0).getName()).isEqualTo("Althea Sweeney");
     }
 
     @Test
@@ -47,11 +45,11 @@ public class PersonRepositoryTest {
         personRepository.save(person);
         Optional<Person> personSaved = personRepository.findById(person.getId());
 
-        assertTrue(personSaved.isPresent());
-        assertEquals(person.getName(), personSaved.get().getName());
-        assertEquals(person.getPpsn(), personSaved.get().getPpsn());
-        assertEquals(person.getDateOfBirth(), personSaved.get().getDateOfBirth());
-        assertEquals(person.getMobilePhone(), personSaved.get().getMobilePhone());
-        assertNotNull(personSaved.get().getCreated());
+        assertThat(personSaved).isPresent();
+        assertThat(person.getName()).isEqualTo(personSaved.get().getName());
+        assertThat(person.getPpsn()).isEqualTo(personSaved.get().getPpsn());
+        assertThat(person.getDateOfBirth()).isEqualTo(personSaved.get().getDateOfBirth());
+        assertThat(person.getMobilePhone()).isEqualTo(personSaved.get().getMobilePhone());
+        assertThat(person.getCreated()).isNotNull();
     }
 }

@@ -1,6 +1,7 @@
 package com.jerome.demographic.units;
 
 import com.jerome.demographic.person.*;
+import com.jerome.demographic.person.exceptions.PersonWithPpsnAlreadyAddedException;
 import com.jerome.demographic.person.models.Person;
 import com.jerome.demographic.person.models.PersonDto;
 import com.jerome.demographic.person.models.PersonRequest;
@@ -15,8 +16,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -73,5 +76,13 @@ public class PersonServiceTest {
         assertThat(personRequest.getPpsn()).isEqualTo(personArgumentCaptor.getValue().getPpsn());
         assertThat(personRequest.getDateOfBirth()).isEqualTo(personArgumentCaptor.getValue().getDateOfBirth());
         assertThat(personRequest.getMobilePhone()).isEqualTo(personArgumentCaptor.getValue().getMobilePhone());
+    }
+
+    @Test(expected = PersonWithPpsnAlreadyAddedException.class)
+    public void shouldThrowAnExceptionIfPersonWasAlreadyAdded() {
+        when(mockPersonRepository.findByPpsn(any())).thenReturn(
+                Optional.of(Person.builder().build())
+        );
+        personService.addNewPerson(new PersonRequest());
     }
 }

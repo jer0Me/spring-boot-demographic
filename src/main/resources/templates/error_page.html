@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+
+<th:block layout:fragment="page_title">
+    Oops! An Error Ocurred
+</th:block>
+
+    <div layout:fragment="content">
+        <h3>We are trying to fix it as soon as possible.</h3>
+
+        <p>Please go back to the home page by clicking
+            <a th:href="@{/}">here</a>
+            or just select other menu</p>
+    </div>
+</html>

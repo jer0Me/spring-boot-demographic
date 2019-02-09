@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/persons")
 public class PersonController {
 
-    private static final String PERSON_REQUEST_ATTRIBUTE_NAME = "personRequest";
     public static final String REDIRECT_PERSONS_ADD_PERSON_VIEW_NAME = "redirect:/persons/add_person";
     public static final String REDIRECT_PERSONS_LIST_VIEW_NAME = "redirect:/persons/list";
 
@@ -34,7 +33,7 @@ public class PersonController {
     @GetMapping("add_person")
     public ModelAndView addPersonForm(ModelAndView modelAndView) {
         modelAndView.setViewName("add_person");
-        modelAndView.addObject(PERSON_REQUEST_ATTRIBUTE_NAME, new PersonRequest());
+        modelAndView.addObject("personRequest", new PersonRequest());
         return modelAndView;
     }
 

@@ -5,6 +5,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 
+    <head>
+        <title> Add person</title>
+    </head>
+
     <th:block layout:fragment="page_title">
         Add Person
     </th:block>
@@ -74,4 +78,9 @@
                     onclick="personFormManager.addPerson()">Submit</button>
         </form>
     </div>
+
+
+    <th:block layout:fragment="scripts">
+        <script type="application/javascript" th:src="@{/js/add_person.js}"></script>
+    </th:block>
 </html>

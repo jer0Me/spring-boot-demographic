@@ -39,7 +39,6 @@ public class PersonServiceTest {
     @Test
     public void shouldReturnAllPersonAvailableMappedToPersonDto() {
         Person person = Person.builder()
-                .id(25L)
                 .name("Robinette Deware")
                 .ppsn("3131333L")
                 .dateOfBirth(LocalDate.of(1987, 9, 1))
@@ -51,7 +50,6 @@ public class PersonServiceTest {
         List<PersonDto> persons = personService.findAll();
 
         assertThat(persons).hasSize(1);
-        assertThat(person.getId()).isEqualTo(persons.get(0).getId());
         assertThat(person.getName()).isEqualTo(persons.get(0).getName());
         assertThat(person.getPpsn()).isEqualTo(persons.get(0).getPpsn());
         assertThat(person.getDateOfBirth()).isEqualTo(persons.get(0).getDateOfBirth());
@@ -70,7 +68,6 @@ public class PersonServiceTest {
 
         verify(mockPersonRepository).save(personArgumentCaptor.capture());
 
-        assertThat(personArgumentCaptor.getValue().getId()).isNull();
         assertThat(personArgumentCaptor.getValue().getCreated()).isNull();
         assertThat(personRequest.getName()).isEqualTo(personArgumentCaptor.getValue().getName());
         assertThat(personRequest.getPpsn()).isEqualTo(personArgumentCaptor.getValue().getPpsn());

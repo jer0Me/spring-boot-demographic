@@ -21,15 +21,10 @@ import java.time.LocalDateTime;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
-    private Long id;
+    private String ppsn;
 
     @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
-    private String ppsn;
 
     @Column(nullable = false)
     private LocalDate dateOfBirth;

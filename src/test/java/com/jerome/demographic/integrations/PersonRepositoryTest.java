@@ -43,13 +43,13 @@ public class PersonRepositoryTest {
                 .mobilePhone("016946584")
                 .build();
         personRepository.save(person);
-        Optional<Person> personSaved = personRepository.findById(person.getId());
+        Optional<Person> personSaved = personRepository.findByPpsn(person.getPpsn());
 
         assertThat(personSaved).isPresent();
         assertThat(person.getName()).isEqualTo(personSaved.get().getName());
         assertThat(person.getPpsn()).isEqualTo(personSaved.get().getPpsn());
         assertThat(person.getDateOfBirth()).isEqualTo(personSaved.get().getDateOfBirth());
         assertThat(person.getMobilePhone()).isEqualTo(personSaved.get().getMobilePhone());
-        assertThat(person.getCreated()).isNotNull();
+        assertThat(personSaved.get().getCreated()).isNotNull();
     }
 }

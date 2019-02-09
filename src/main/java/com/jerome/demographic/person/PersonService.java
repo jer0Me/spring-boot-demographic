@@ -26,7 +26,6 @@ public class PersonService {
         return personRepository.findAll()
                 .stream()
                 .map(person -> PersonDto.builder()
-                        .id(person.getId())
                         .name(person.getName())
                         .ppsn(person.getPpsn())
                         .dateOfBirth(person.getDateOfBirth())

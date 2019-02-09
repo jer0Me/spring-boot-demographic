@@ -17,6 +17,7 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<PersonDto> findAll() {
         return personRepository.findAll()
                 .stream()

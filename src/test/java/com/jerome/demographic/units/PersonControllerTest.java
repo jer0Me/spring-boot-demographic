@@ -1,9 +1,6 @@
 package com.jerome.demographic.units;
 
-import com.jerome.demographic.person.PersonController;
-import com.jerome.demographic.person.PersonDto;
-import com.jerome.demographic.person.PersonRequest;
-import com.jerome.demographic.person.PersonService;
+import com.jerome.demographic.person.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +12,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PersonControllerTest {
@@ -79,5 +75,23 @@ public class PersonControllerTest {
         ModelAndView modelAndView = new ModelAndView();
         ModelAndView modelAndViewRetrieved = personController.addPerson(new PersonRequest(), modelAndView, mockRedirectAttributes);
         assertThat(modelAndViewRetrieved.getViewName()).isEqualTo(PersonController.REDIRECT_PERSONS_LIST_VIEW_NAME);
+    }
+
+    @Test
+    public void shouldRedirectUserToAddPersonFormIfPersonWithPpsnAlreadyAddedExceptionMessageToTheViewIsThrown() {
+        doThrow(new PersonWithPpsnAlreadyAddedException("PPSN")).when(mockPersonService).addNewPerson(any());
+        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndViewRetrieved = personController.addPerson(new PersonRequest(), modelAndView, mockRedirectAttributes);
+        assertThat(modelAndViewRetrieved.getViewName()).isEqualTo(PersonController.REDIRECT_PERSONS_ADD_PERSON_VIEW_NAME);
+    }
+
+    @Test
+    public void shouldPassPersonWithPpsnAlreadyAddedExceptionMessageToTheView() {
+        PersonWithPpsnAlreadyAddedException exception = new PersonWithPpsnAlreadyAddedException("PPSN");
+        doThrow(exception).when(mockPersonService).addNewPerson(any());
+        ModelAndView modelAndView = new ModelAndView();
+        personController.addPerson(new PersonRequest(), modelAndView, mockRedirectAttributes);
+        verify(mockRedirectAttributes)
+                .addFlashAttribute(PersonController.ERROR_MESSAGE_ATTRIBUTE_NAME, exception.getMessage());
     }
 }

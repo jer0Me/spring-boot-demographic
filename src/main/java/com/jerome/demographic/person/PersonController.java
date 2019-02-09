@@ -15,6 +15,7 @@ public class PersonController {
 
     public static final String REDIRECT_PERSONS_ADD_PERSON_VIEW_NAME = "redirect:/persons/add_person";
     public static final String REDIRECT_PERSONS_LIST_VIEW_NAME = "redirect:/persons/list";
+    public static final String ERROR_MESSAGE_ATTRIBUTE_NAME = "errorMessage";
 
     private PersonService personService;
 
@@ -44,8 +45,8 @@ public class PersonController {
         try {
             personService.addNewPerson(personRequest);
             modelAndView.setViewName(REDIRECT_PERSONS_LIST_VIEW_NAME);
-        } catch (PersonWithPpsnAlreadyExistException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        } catch (PersonWithPpsnAlreadyAddedException e) {
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE_ATTRIBUTE_NAME, e.getMessage());
             modelAndView.setViewName(REDIRECT_PERSONS_ADD_PERSON_VIEW_NAME);
         }
 

@@ -41,7 +41,7 @@ public class PersonService {
 
     private void checkIfThePersonWasAlreadyAdded(PersonRequest personRequest) {
         if (personRepository.findByPpsn(personRequest.getPpsn()).isPresent()) {
-            throw new PersonWithPpsnAlreadyExistException(personRequest.getPpsn());
+            throw new PersonWithPpsnAlreadyAddedException(personRequest.getPpsn());
         }
     }
 

@@ -1,6 +1,6 @@
 package com.jerome.demographic.integrations;
 
-import com.jerome.demographic.person.Person;
+import com.jerome.demographic.person.models.Person;
 import com.jerome.demographic.person.PersonRepository;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.junit.Test;

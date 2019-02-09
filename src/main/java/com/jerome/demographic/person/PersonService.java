@@ -1,5 +1,9 @@
 package com.jerome.demographic.person;
 
+import com.jerome.demographic.person.exceptions.PersonWithPpsnAlreadyAddedException;
+import com.jerome.demographic.person.models.Person;
+import com.jerome.demographic.person.models.PersonDto;
+import com.jerome.demographic.person.models.PersonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

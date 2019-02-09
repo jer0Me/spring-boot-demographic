@@ -1,4 +1,4 @@
-package com.jerome.demographic.person;
+package com.jerome.demographic.person.models;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

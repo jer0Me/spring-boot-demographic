@@ -1,4 +1,4 @@
-package com.jerome.demographic;
+package com.jerome.demographic.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

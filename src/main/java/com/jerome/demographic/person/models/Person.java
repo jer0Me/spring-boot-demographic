@@ -1,4 +1,4 @@
-package com.jerome.demographic.person;
+package com.jerome.demographic.person.models;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

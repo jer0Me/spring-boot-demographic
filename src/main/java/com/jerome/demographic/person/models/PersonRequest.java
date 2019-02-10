@@ -45,6 +45,8 @@ public class PersonRequest {
     private void validateName(Notification notification) {
         if (name == null || name.isEmpty()) {
             notification.addError(NAME_IS_REQUIRED_ERROR_MESSAGE);
+        } else if (name.length() > 25) {
+            notification.addError(NAME_MAX_25_CHARACTERS);
         }
     }
 

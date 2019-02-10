@@ -1,5 +1,7 @@
 package com.jerome.demographic.person;
 
+import com.jerome.demographic.common.Notification;
+import com.jerome.demographic.person.exceptions.PersonRequestNotValidException;
 import com.jerome.demographic.person.exceptions.PersonWithPpsnAlreadyAddedException;
 import com.jerome.demographic.person.models.Person;
 import com.jerome.demographic.person.models.PersonDto;
@@ -37,9 +39,19 @@ public class PersonService {
     @Transactional
     public void addNewPerson(PersonRequest personRequest) {
         checkIfThePersonWasAlreadyAdded(personRequest);
+        validatePersonRequest(personRequest);
         personRepository.save(
                 mapPersonRequestToPerson(personRequest)
         );
+    }
+
+    private void validatePersonRequest(PersonRequest personRequest) {
+        Notification notification = new Notification();
+        personRequest.validate(notification);
+
+        if (notification.hasErrors()) {
+            throw new PersonRequestNotValidException(notification.errorMessage());
+        }
     }
 
     private void checkIfThePersonWasAlreadyAdded(PersonRequest personRequest) {

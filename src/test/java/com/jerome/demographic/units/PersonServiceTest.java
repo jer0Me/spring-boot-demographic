@@ -1,6 +1,8 @@
 package com.jerome.demographic.units;
 
-import com.jerome.demographic.person.*;
+import com.jerome.demographic.person.PersonService;
+import com.jerome.demographic.person.PersonRepository;
+import com.jerome.demographic.person.exceptions.PersonRequestNotValidException;
 import com.jerome.demographic.person.exceptions.PersonWithPpsnAlreadyAddedException;
 import com.jerome.demographic.person.models.Person;
 import com.jerome.demographic.person.models.PersonDto;
@@ -84,5 +86,11 @@ public class PersonServiceTest {
                 Optional.of(Person.builder().build())
         );
         personService.addNewPerson(new PersonRequest());
+    }
+
+    @Test(expected = PersonRequestNotValidException.class)
+    public void shouldThrowAnExceptionIfPersonRequestIsNotValidWhenPersonIsGoingToBeAdded() {
+        PersonRequest personRequest = new PersonRequest();
+        personService.addNewPerson(personRequest);
     }
 }

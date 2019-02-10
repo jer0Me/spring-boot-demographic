@@ -13,6 +13,7 @@ import static java.time.temporal.ChronoUnit.YEARS;
 public class PersonRequest {
 
     public static final String NAME_IS_REQUIRED_ERROR_MESSAGE = "Name is required";
+    public static final String NAME_MAX_25_CHARACTERS = "Name cannot be more than 25 characters";
     public static final String PPSN_IS_REQUIRED_ERROR_MESSAGE = "PPSN is required";
     public static final String PPSN_HAS_WRONG_FORMAT = "PPSN has a wrong format";
     public static final String PERSON_MUST_BE_OVER_16_YEARS_OLD_ERROR_MESSAGE = "Person must be over 16 years old";

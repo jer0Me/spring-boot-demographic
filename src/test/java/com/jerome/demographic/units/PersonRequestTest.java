@@ -8,7 +8,9 @@ import org.junit.Test;
 import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.YEARS;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.never;
 
 public class PersonRequestTest {
 
@@ -37,6 +39,13 @@ public class PersonRequestTest {
         personRequest.setName("");
         personRequest.validate(mockNotification);
         verify(mockNotification).addError(PersonRequest.NAME_IS_REQUIRED_ERROR_MESSAGE);
+    }
+
+    @Test
+    public void shouldReturnAnErrorMessageWhenNameSizeIsGreaterThan25Characters() {
+        personRequest.setName("NameMoreThan25Characters!!");
+        personRequest.validate(mockNotification);
+        verify(mockNotification).addError(PersonRequest.NAME_MAX_25_CHARACTERS);
     }
 
     @Test

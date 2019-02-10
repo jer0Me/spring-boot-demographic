@@ -65,9 +65,9 @@ public class PersonServiceTest {
     public void shouldAddNewPersonToTheDatabase() {
         PersonRequest personRequest = new PersonRequest();
         personRequest.setName("Robinette Deware");
-        personRequest.setPpsn("3131333L");
+        personRequest.setPpsn("3131313F");
         personRequest.setDateOfBirth(LocalDate.of(1987, 9, 1));
-        personRequest.setMobilePhone("016946584");
+        personRequest.setMobilePhone("086946584");
 
         personService.addNewPerson(personRequest);
 

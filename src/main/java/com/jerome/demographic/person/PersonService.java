@@ -32,6 +32,7 @@ public class PersonService {
                         .ppsn(person.getPpsn())
                         .dateOfBirth(person.getDateOfBirth())
                         .mobilePhone(person.getMobilePhone())
+                        .created(person.getCreated())
                         .build()
                 ).collect(Collectors.toList());
     }

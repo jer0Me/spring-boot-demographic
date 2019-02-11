@@ -59,6 +59,7 @@ public class PersonServiceTest {
         assertThat(person.getPpsn()).isEqualTo(persons.get(0).getPpsn());
         assertThat(person.getDateOfBirth()).isEqualTo(persons.get(0).getDateOfBirth());
         assertThat(person.getMobilePhone()).isEqualTo(persons.get(0).getMobilePhone());
+        assertThat(person.getCreated()).isEqualTo(persons.get(0).getCreated());
     }
 
     @Test

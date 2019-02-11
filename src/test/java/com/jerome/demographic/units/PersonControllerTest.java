@@ -66,7 +66,7 @@ public class PersonControllerTest {
                 .created(LocalDateTime.now()).build();
         PersonDto lastPersonAdded = PersonDto.builder()
                 .name("Second guy")
-                .created(LocalDateTime.now()).build();
+                .created(LocalDateTime.now().plusDays(4)).build();
 
         personDtos.add(firstPersonAdded);
         personDtos.add(lastPersonAdded);

@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.ChronoUnit.YEARS;
@@ -43,7 +44,7 @@ public class PersonRequest {
     }
 
     private void validateName(Notification notification) {
-        if (name == null || name.isEmpty()) {
+        if (Objects.isNull(name) || name.isEmpty()) {
             notification.addError(NAME_IS_REQUIRED_ERROR_MESSAGE);
         } else if (name.length() > 25) {
             notification.addError(NAME_MAX_25_CHARACTERS);
@@ -51,7 +52,7 @@ public class PersonRequest {
     }
 
     private void validatePpsn() {
-        if (ppsn == null || ppsn.isEmpty()) {
+        if (Objects.isNull(ppsn)  || ppsn.isEmpty()) {
             notification.addError(PPSN_IS_REQUIRED_ERROR_MESSAGE);
         } else if(!ppsn.matches("\\d{7}[A-Z]{1,2}")) {
             notification.addError(PPSN_HAS_WRONG_FORMAT);
@@ -82,7 +83,7 @@ public class PersonRequest {
     }
 
     private void validateDateOfBirth() {
-        if (dateOfBirth == null) {
+        if (Objects.isNull(dateOfBirth)) {
             notification.addError(DATE_OF_BIRTH_IS_REQUIRED_ERROR_MESSAGE);
         } else if (DAYS.between(LocalDate.now(), dateOfBirth) >= 0){
             notification.addError(DATE_OF_BIRTH_CANNOT_BE_FUTURE_DATE_ERROR_MESSAGE);
@@ -92,7 +93,7 @@ public class PersonRequest {
     }
 
     private void validateMobilePhone() {
-        if (mobilePhone == null || mobilePhone.isEmpty()) {
+        if (Objects.isNull(mobilePhone) || mobilePhone.isEmpty()) {
             notification.addError(MOBILE_PHONE_IS_REQUIRED_ERROR_MESSAGE);
         } else {
             validateMobilePhoneFormat();

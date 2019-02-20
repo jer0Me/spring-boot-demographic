@@ -7,16 +7,23 @@ import com.jerome.demographic.person.models.PersonRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.doThrow;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PersonControllerTest {
@@ -26,18 +33,15 @@ public class PersonControllerTest {
     private ModelAndView mockModelAndView;
     private RedirectAttributes mockRedirectAttributes;
 
+    @Captor
+    private ArgumentCaptor<List<PersonDto>> personDtoListCapture;
+
     @Before
     public void setUp() {
         mockPersonService = mock(PersonService.class);
         personController = new PersonController(mockPersonService);
         mockModelAndView = mock(ModelAndView.class);
         mockRedirectAttributes = mock(RedirectAttributes.class);
-    }
-
-    @Test
-    public void shouldCallPersonServiceToRetrievePersonList() {
-        personController.findAll(mockModelAndView);
-        verify(mockPersonService).findAll();
     }
 
     @Test
@@ -52,6 +56,24 @@ public class PersonControllerTest {
         when(mockPersonService.findAll()).thenReturn(emptyPersonList);
         personController.findAll(mockModelAndView);
         verify(mockModelAndView).addObject("persons", emptyPersonList);
+    }
+
+    @Test
+    public void shouldReturnPersonsListOrderedByCreatedDesc() {
+        List<PersonDto> personDtos = new ArrayList<>();
+        PersonDto firstPersonAdded = PersonDto.builder()
+                .name("First guy")
+                .created(LocalDateTime.now()).build();
+        PersonDto lastPersonAdded = PersonDto.builder()
+                .name("Second guy")
+                .created(LocalDateTime.now().plusDays(4)).build();
+
+        personDtos.add(firstPersonAdded);
+        personDtos.add(lastPersonAdded);
+        when(mockPersonService.findAll()).thenReturn(personDtos);
+        personController.findAll(mockModelAndView);
+        verify(mockModelAndView).addObject(any(), personDtoListCapture.capture());
+        assertThat(personDtoListCapture.getValue().get(0).getName()).isEqualTo("Second guy");
     }
 
     @Test
